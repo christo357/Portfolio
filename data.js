@@ -56,8 +56,8 @@ const portfolioData = {
 
     // Contact Information
     contact: {
-        email: "christomathew2001@gmail.com", // Update with your actual email
-        location: "Available for Remote Work",
+        // email: "christomathew2001@gmail.com", // Update with your actual email
+        location: "Available for Remote Work (USA)",
         text: "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!"
     },
 
