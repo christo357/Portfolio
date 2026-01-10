@@ -109,7 +109,7 @@ if (skillsContainer && portfolioData.skills && Array.isArray(portfolioData.skill
         const subskills = skill.description.split(',').map(s => s.trim());
         const subskillsHtml = subskills.map((subskill, index) => {
             const isLast = index === subskills.length - 1;
-            return `<span class="subskill-tag" data-subskill="${subskill}">${subskill}</span>${!isLast ? ', ' : ''}`;
+            return `<span class="subskill-tag" data-subskill="${subskill}">${subskill}${!isLast ? ', ' : ''}</span>`;
         }).join('');
 
         skillItem.innerHTML = `

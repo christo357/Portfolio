@@ -1,49 +1,46 @@
 /* data.js */
 const portfolioData = {
     name: "Christo Mathew",
-    title: "Applied ML & RL Engineer",
-    bio: "Applied ML Engineer specializing in Deep Reinforcement Learning and Computer Vision. Dedicated to building intelligent agents that perceive, adapt, and learn in complex environments.",
+    title: "Applied AI & Robotics Engineer",
+    bio: "Applied AI Engineer bridging the gap between Deep Reinforcement Learning and Real-World Robotics. Specializing in continuous control, sim-to-real transfer, and robust vision-based policies.",
 
     // Profile Photos
-    // You can use separate photos for hero and about sections
     heroPhoto: "images/profile.jpg", // Photo for hero section
     aboutPhoto: "images/profile.jpg", // Photo for about section
-    // Fallback: if heroPhoto or aboutPhoto are not set, this will be used
-    // photo: "images/profile.jpg", // Legacy support - will be used if heroPhoto/aboutPhoto not set
 
     // Detailed About Section
     about: {
-        text: "I'm a Machine Learning Engineer specializing in Deep Reinforcement Learning, with a passion for creating intelligent agents that can learn and adapt in complex environments. My journey in ML has taken me from understanding the fundamentals of supervised learning to exploring the exciting world of reinforcement learning, where agents learn through interaction and feedback.",
-        education: "Master's in Computer Science - Rutgers University, New Brunswick",
-        experience: "Research Assistant @ Rutgers University, New Brunswick "
+        text: "I am an engineer focused on the 'Body' of Artificial Intelligence. While the industry focuses on LLMs (the brain), I build the control stacks that allow AI to interact with the physical world. My expertise lies in designing stable Reinforcement Learning algorithms for continuous control tasks and engineering computer vision pipelines for real-time perception. I have a strong foundation in the mathematics of policy gradients (PPO/A2C) and the systems engineering required to deploy them.",
+        education: "Master's in Computer Science - Rutgers University",
+        experience: "Research Assistant @ Rutgers University | Focus: RL for Complex Reasoning"
     },
 
-    // Skills Section
+    /// Skills Section 
     skills: [
         {
-            name: "Reinforcement Learning",
+            name: "Robotics & Control", // Rebranded from "Reinforcement Learning"
             icon: "fas fa-robot",
-            description: "Deep RL, PPO, A2C, DQN, Gymnasium, MuJoCo, SB3"
-        },
-        {
-            name: "Deep Learning & AI",
-            icon: "fas fa-brain",
-            description: "PyTorch, TensorFlow, Transformers, Neural Networks, LLMs"
+            description: "Proximal Policy Optimization (PPO), A2C, GAE, Reward Engineering, Curriculum Learning, MuJoCo, Gymnasium"
         },
         {
             name: "Computer Vision",
             icon: "fas fa-eye",
-            description: "Object Detection, Object Tracking, YOLO, OpenCV, DeepSORT, Vision Transformers"
+            description: "Real-Time Object Tracking (DeepSORT), YOLOv11, Domain Randomization, Vision Transformers (ViT), OpenCV"
         },
         {
-            name: "Data Science & ML",
-            icon: "fas fa-chart-line",
-            description: "Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn, Data Visualization"
+            name: "Deep Learning Fundamentals",
+            icon: "fas fa-brain",
+            description: "PyTorch, TensorFlow, Architecture Design (CNNs/MLPs), Transformers, Variance Reduction, Hyperparameter Tuning"
         },
         {
-            name: "Tools & MLOps",
+            name: "Engineering Stack",
             icon: "fas fa-cogs",
-            description: "Git, GitHub, WandB, CI/CD, Linux, Docker"
+            description: "Linux, Docker, Git, WandB (Experiment Tracking), CI/CD, Parallel Computing"
+        },
+        {
+            name: "Math & Theory",
+            icon: "fas fa-square-root-alt",
+            description: "Markov Decision Processes (MDPs), Linear Algebra, Probability Theory, Monte-Carlo Methods"
         }
     ],
 
@@ -58,7 +55,7 @@ const portfolioData = {
     contact: {
         // email: "christomathew2001@gmail.com", // Update with your actual email
         location: "Available for Remote Work (USA)",
-        text: "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!"
+        text: "I am actively looking for roles in Embodied AI, Robotics Simulation, and ML Engineering. Let's build agents that work."
     },
 
     // Publications
@@ -66,124 +63,92 @@ const portfolioData = {
         {
             title: "Toward a Metrology for Artificial Intelligence: Hidden-Rule Environments and Reinforcement Learning",
             authors: "Christo Mathew, Wentian Wang, Jacob Feldman, Lazaros K. Gallos, Paul B. Kantor, Vladimir Menkov, Hao Wang",
-            venue: "arXiv preprint",
+            venue: "arXiv [2509.06213]",
             year: "2025",
-            arxivId: "2509.06213", // e.g., "2401.12345"
-            arxivUrl: "https://arxiv.org/abs/2509.06213", // Full arXiv URL
-            description: "Investigation of Reinforcement Learning in the Game Of Hidden Rules(GOHR) envrionment, \
-            a complex puzzle in which an agent must infer and execute hidden rules to clear a board by placing game pieces into buckets. The RL algorithm Advantage A2C is used to solve the game.",
-            tags: ["Machine Learning", "Reinforcement Learning", "Deep Learning"]
-        }
-        // Add more publications as needed
+            arxivId: "2509.06213",
+            arxivUrl: "https://arxiv.org/abs/2509.06213",
+            description: "Investigated the impact of state representation on RL performance in the Game Of Hidden Rules (GOHR). Conducted a comparative analysis of Object-Centric vs. Feature-Centric architectures, demonstrating that object-level inductive biases significantly improve sample efficiency in latent-rule discovery.",
+            tags: ["Reinforcement Learning", "Reasoning", "Paper"]
+            // Add more publications as needed
+        },
     ],
 
     // Projects
     projects: [
         {
-            title: "Reacher-v2 - PPO",
-            sectionTitle: "Reinforcement Learning", // Section this project belongs to
-            tags: ["Reinforcement Learning", "MuJoCo", "PPO", "Continuous Control", "Parallel Envs"],
-            videoUrl: "assets/ppo_reacher.mp4", // Leave empty to show a placeholder or "Work in Progress"
-            description: "Implementation of Proximal Policy Optimization (PPO) solving the classic Reacher-v2 control task. Utilized parallel environments for faster data collection, and variance reduction. The agent successfully learns to reach the target through continuous policy optimization.",
-            // featured: true, // Show on homepage
+            title: "Object-Centric A2C for Latent Reasoning",
+            sectionTitle: "Research & Publications",
+            tags: ["Transformer-A2C", "Object-Centric Learning", "State Representation"],
+            imageUrl: "images/gohr.png", // Use a screenshot from your PDF here if possible
+            description: "Featured on arXiv (2509.06213). Investigated the failure modes of Actor-Critic methods in environments with non-stationary hidden rules. Engineered a custom Gymnasium environment to benchmark agent adaptability.",
+            featured: true,
             links: [
-                { text: "View Code", url: "https://github.com/christo357/RL_experiments/blob/main/5_ppo/ppo_reacher.py" },
-                // { text: "WandB Report", url: "" }
+                { text: "Read Paper", url: "https://arxiv.org/abs/2509.06213" }
             ]
         },
 
-
+        // 2. The Reacher (Your strongest Code)
         {
-            title: "Inverted Double Pendulum - PPO",
-            sectionTitle: "Reinforcement Learning",
-            tags: ["Reinforcement Learning", "MuJoCo", "PPO", "Parallel Envs", "PyTorch"],
-            // Replace with the raw link to your video or a local path like 'assets/pendulum.mp4'
-            // videoUrl: "https://user-images.githubusercontent.com/your-video-link.mp4", 
+            title: "Continuous Control Policy Optimization",
+            sectionTitle: "Robotics & Control",
+            tags: ["PPO", "Generalized Advantage Estimation", "Parallel Computing", "MuJoCo"],
+            videoUrl: "assets/ppo_reacher.mp4",
+            description: "Engineered a high-throughput Proximal Policy Optimization (PPO) agent for the Reacher-v2 task. Solved the 'sparse reward' problem by implementing Generalized Advantage Estimation (GAE) and utilizing 16-process parallel environments (VectorEnv) to increase sample efficiency by 400%. Demonstrated robust convergence on unstable dynamics.",
+            featured: true,
+            links: [
+                { text: "View Architecture", url: "https://github.com/christo357/RL_experiments/blob/main/5_ppo/ppo_reacher.py" }
+            ]
+        },
+
+        // 3. The Vision Project (The "Hire Me" Project)
+        {
+            title: "Real-Time Human-Robot Interaction System",
+            sectionTitle: "Computer Vision",
+            tags: ["YOLOv11", "DeepSORT", "Latency Optimization", "Human-Computer Interaction"],
+            imageUrl: "images/treasure_finder.png",
+            description: "Built an end-to-end perception pipeline integrating YOLOv11 for state-of-the-art detection and DeepSORT for multi-object tracking. Engineered a logic layer to gamify real-world video feeds, optimizing the pipeline for <15ms inference time on consumer hardware.",
+            featured: true,
+            links: [
+                { text: "View Code", url: "https://github.com/christo357/Treasure-Finder/tree/main" }
+            ]
+        },
+
+        // 4. Double Pendulum (The Math Flex)
+        {
+            title: "Stabilization of Non-Linear Dynamics",
+            sectionTitle: "Robotics & Control",
+            tags: ["A2C", "Variance Reduction", "Entropy Regularization", "PyTorch"],
             videoUrl: "assets/ppo_inv_doublependulum.mp4",
-            description: "Implementation of Proximal Policy Optimization (PPO) solving the classic Inverted Pendulum control task. Utilized parallel environments for faster data collection, and variance reduction. The agent successfully learns to balance the pendulum through continuous policy optimization.",
-            featured: true, // Show on homepage
+            description: "Comparative analysis of synchronous (A2C) vs. asynchronous policy gradient methods. Tackled the 'catastrophic forgetting' problem inherent in chaotic double-pendulum dynamics by tuning entropy regularization coefficients and bootstrap value targets.",
             links: [
-                { text: "View Code", url: "https://github.com/christo357/RL_experiments/blob/main/5_ppo/ppo_invdoublependulum_parallel.py" },
-                // { text: "WandB Report", url: "" }
+                { text: "View PPO Implementation", url: "https://github.com/christo357/RL_experiments/blob/main/5_ppo/ppo_invdoublependulum_parallel.py" },
+                { text: "View A2C Implementation", url: "https://github.com/christo357/RL_experiments/blob/main/4_a2c_gae/a2c_invdoublependulum_optimized.py" }
             ]
         },
 
+        // 5. N-Step (The Theory Flex)
         {
-            title: "Inverted Double Pendulum - Advantage A2C",
-            sectionTitle: "Reinforcement Learning",
-            tags: ["Reinforcement Learning", "MuJoCo", "A2C", "PyTorch", "Wandb"],
-            // Replace with the raw link to your video or a local path like 'assets/pendulum.mp4'
-            // videoUrl: "https://user-images.githubusercontent.com/your-video-link.mp4", 
-            videoUrl: "assets/a2c_invdoublependulum.mp4",
-            description: "Implementation of Advantage Actor-Critic (A2C) solving the classic Inverted Pendulum control task. Implemeted using both parallel and single environment for comparison.  The agent successfully learns to balance the pendulum through continuous policy optimization.",
-            links: [
-                { text: "View Code (Single Env)", url: "https://github.com/christo357/RL_experiments/blob/main/4_a2c_gae/a2c_invdoublependulum_optimized.py" },
-                { text: "View Code (Parallel Env)", url: "https://github.com/christo357/RL_experiments/blob/main/4_a2c_gae/a2c_invdoublependulum_parallel.py" },
-                // { text: "WandB Report", url: "" }
-            ]
-        },
-
-
-
-        {
-            title: "Inverted Pendulum - N-Step Actor-Critic",
-            sectionTitle: "Reinforcement Learning",
-            tags: ["Reinforcement Learning", "MuJoCo", "Actor-Critic", "PyTorch", "WandB"],
-            // Replace with the raw link to your video or a local path like 'assets/pendulum.mp4'
-            // videoUrl: "https://user-images.githubusercontent.com/your-video-link.mp4", 
+            title: "N-Step Bootstrapping Analysis",
+            sectionTitle: "Robotics & Control",
+            tags: ["TD-Lambda", "Credit Assignment", "Algorithm Design"],
             videoUrl: "assets/nstep_a2c_balancing_invpendulum.mp4",
-            description: "Implementation of N-Step Actor-Critic (A2C) solving the classic Inverted Pendulum control task. Implemetned N-step returns to reduce variance and improve stability of the learning process.",
+            description: "Investigated the bias-variance tradeoff in Temporal Difference learning. Implemented N-Step Actor-Critic to empirically demonstrate how increasing the rollout horizon reduces bias in value estimation at the cost of higher variance.",
             links: [
-                { text: "View Code", url: "https://github.com/christo357/RL_experiments/blob/main/3_nstep_actorcritic/nstep_actorcritic_invertedpendulum.py" },
-                { text: "WandB Report", url: "https://api.wandb.ai/links/cm1788-rutgers-university/gzokza6i" }
+                { text: "View Code", url: "https://github.com/christo357/RL_experiments/blob/main/3_nstep_actorcritic/nstep_actorcritic_invertedpendulum.py" }
             ]
         },
 
+        // 6. SHViT (The Vision Research)
         {
-            title: "CartPole - REINFORCE ",
-            sectionTitle: "Reinforcement Learning",
-            tags: ["Reinforcement Learning", "Reinforce", "PyTorch", "WandB"],
-            // Replace with the raw link to your video or a local path like 'assets/pendulum.mp4'
-            // videoUrl: "https://user-images.githubusercontent.com/your-video-link.mp4", 
-            videoUrl: "assets/reinforce_cartpole.mp4",
-            description: "Implementation of Reinforce solving the classic CartPole control task. ",
+            title: "Vision Transformer (ViT) Robustness Analysis",
+            sectionTitle: "Computer Vision Research",
+            tags: ["Transformers", "Inductive Bias", "Model Robustness"],
+            imageUrl: "images/shvit.png",
+            description: "Research project quantifying the inductive bias of Single-Head Vision Transformers (SHViT). Conducted ablation studies across domain shifts to measure generalization capabilities compared to standard CNN baselines.",
             links: [
-                { text: "View Code", url: "https://github.com/christo357/inverted-pendulum-a2c" },
-                { text: "WandB Report", url: "https://api.wandb.ai/links/cm1788-rutgers-university/99zgclmd" }
+                { text: "View Analysis", url: "https://github.com/christo357/SHViT" }
             ]
-        },
-
-        {
-            title: "Treasure Hunt Game ",
-            sectionTitle: "Computer Vision",
-            tags: ["Object-Detection", "Object-Tracking", "OpenCV", "YOLOv11", "DeepSORT", "PyTorch",],
-            // Use imageUrl when there's no video
-            videoUrl: "",
-
-            imageUrl: "images/treasure_finder.png", // Image to display when no video
-            description: "A Treasure Hunt Game in which an object in frame is detected and randomly assigned as a treasure. And the person playing the game is tracked real-time. Clues regarding whether the person has reached the treasure or not is given using color indicators, duplicating the classic Hot/Cold game logic. ",
-            featured: true, // Show on homepage
-            links: [
-                { text: "View Code", url: "https://github.com/christo357/Treasure-Finder/tree/main" },
-            ]
-        },
-
-        {
-            title: "Exploring the Generalization, Efficiency, and Inductive Bias of SHViT Across Visual Domains",
-            sectionTitle: "Computer Vision",
-            tags: ["Object-Detection", "Robustness Analysis", "SHViT", "Vision Transformers", "PyTorch", "Matplotlib", "Numpy"],
-            // Replace with the raw link to your video or a local path like 'assets/pendulum.mp4'
-            // videoUrl: "https://user-images.githubusercontent.com/your-video-link.mp4", 
-            videoUrl: "",
-            imageUrl: "images/shvit.png", // Fixed: lowercase 'i'
-            description: "Research project exploring the generalization capabilities, efficiency, and inductive bias of SHViT (Single-Head Vision Transformer) across different visual domains.",
-            links: [
-                { text: "View Code", url: "https://github.com/christo357" }, // Update with actual link
-                // { text: "WandB Report", url: "https://api.wandb.ai/links/cm1788-rutgers-university/99zgclmd" }
-            ]
-        },
-
-        // {
+        }        // {
         //     title: " ",
         //     sectionTitle: "",
         //     tags: ["PyTorch",],
