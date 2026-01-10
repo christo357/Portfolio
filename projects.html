@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Christo Mathew</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">CM</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Header -->
+    <section class="projects-header">
+        <div class="container">
+            <h1 class="page-title">All Projects</h1>
+            <p class="page-subtitle">Exploring the world of Reinforcement Learning, one algorithm at a time</p>
+        </div>
+    </section>
+
+    <!-- All Projects Section -->
+    <section class="projects">
+        <div class="container">
+            <div id="project-grid" class="projects-container"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> <span id="footer-name"></span>. All rights reserved.</p>
+            <p class="footer-note">Built with passion for Machine Learning & Reinforcement Learning</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        // Function to match skill name to project tags
+        function skillMatchesProject(skillName, project) {
+            if (!project.tags || !Array.isArray(project.tags)) return false;
+            
+            // Normalize skill name for matching
+            const normalizedSkillName = skillName.toLowerCase().trim();
+            
+            // Check if any tag matches the skill name
+            return project.tags.some(tag => {
+                const normalizedTag = tag.toLowerCase().trim();
+                // Direct match
+                if (normalizedTag === normalizedSkillName) return true;
+                // Partial match (e.g., "Reinforcement Learning" matches "Reinforcement Learning" in tags)
+                if (normalizedTag.includes(normalizedSkillName) || normalizedSkillName.includes(normalizedTag)) return true;
+                // Handle special cases
+                if (normalizedSkillName === 'computer vision/perception' && 
+                    (normalizedTag.includes('computer vision') || normalizedTag.includes('object-detection') || 
+                     normalizedTag.includes('object-tracking') || normalizedTag.includes('opencv') || 
+                     normalizedTag.includes('yolo'))) return true;
+                if (normalizedSkillName === 'reinforcement learning' && 
+                    (normalizedTag.includes('reinforcement') || normalizedTag.includes('rl') ||
+                     normalizedTag.includes('a2c') || normalizedTag.includes('ppo') || 
+                     normalizedTag.includes('dqn') || normalizedTag.includes('reinforce'))) return true;
+                if (normalizedSkillName === 'deep learning' && 
+                    (normalizedTag.includes('deep learning') || normalizedTag.includes('neural') ||
+                     normalizedTag.includes('pytorch') || normalizedTag.includes('tensorflow'))) return true;
+                return false;
+            });
+        }
+
+        // Override project loading for projects page - show all projects grouped by sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectContainer = document.getElementById('project-grid');
+            if (projectContainer) {
+                // Clear any existing content
+                projectContainer.innerHTML = '';
+                
+                // Get filter from URL parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const filterSkill = urlParams.get('filter');
+                
+                // Add filter indicator if filtering
+                if (filterSkill) {
+                    const filterIndicator = document.createElement('div');
+                    filterIndicator.className = 'filter-indicator';
+                    filterIndicator.innerHTML = `
+                        <span>Filtering by: <strong>${filterSkill}</strong></span>
+                        <a href="projects.html" class="clear-filter">Clear Filter <i class="fas fa-times"></i></a>
+                    `;
+                    projectContainer.parentElement.insertBefore(filterIndicator, projectContainer);
+                }
+                
+                // Group projects by sectionTitle
+                // Filter out empty/invalid projects first
+                let validProjects = portfolioData.projects.filter(project => {
+                    return project.title && project.title.trim() !== '' && project.title.trim() !== ' ';
+                });
+                
+                // Apply skill filter if specified
+                if (filterSkill) {
+                    validProjects = validProjects.filter(project => {
+                        return skillMatchesProject(filterSkill, project);
+                    });
+                    
+                    // Show message if no projects match
+                    if (validProjects.length === 0) {
+                        projectContainer.innerHTML = `
+                            <div class="no-projects-message">
+                                <i class="fas fa-search"></i>
+                                <h3>No projects found</h3>
+                                <p>No projects match the skill filter: <strong>${filterSkill}</strong></p>
+                                <a href="projects.html" class="cta-button">View All Projects</a>
+                            </div>
+                        `;
+                        return;
+                    }
+                }
+                
+                const projectsBySection = {};
+                validProjects.forEach(project => {
+                    const section = (project.sectionTitle && project.sectionTitle.trim() !== '') 
+                        ? project.sectionTitle 
+                        : 'Other Projects';
+                    if (!projectsBySection[section]) {
+                        projectsBySection[section] = [];
+                    }
+                    projectsBySection[section].push(project);
+                });
+
+                // Create sections and projects
+                Object.keys(projectsBySection).forEach(sectionTitle => {
+                    // Create section wrapper
+                    const sectionWrapper = document.createElement('div');
+                    sectionWrapper.className = 'project-section';
+                    
+                    // Create section title
+                    const sectionHeader = document.createElement('h3');
+                    sectionHeader.className = 'project-section-title';
+                    sectionHeader.textContent = sectionTitle;
+                    sectionWrapper.appendChild(sectionHeader);
+                    
+                    // Create grid for this section
+                    const sectionGrid = document.createElement('div');
+                    sectionGrid.className = 'grid';
+                    
+                    // Add projects to this section
+                    projectsBySection[sectionTitle].forEach(project => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+
+                        // Tags Generation
+                        const tagsHtml = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+                        // Links Generation
+                        const linksHtml = project.links.map((link, index) => {
+                            const btnClass = index === 0 ? 'btn-primary' : 'btn-secondary';
+                            return `<a href="${link.url}" class="btn ${btnClass}" target="_blank" rel="noopener noreferrer">${link.text} <i class="fas fa-external-link-alt"></i></a>`;
+                        }).join('');
+
+                        // Video, Image, or Placeholder
+                        let mediaHtml = '';
+                        if (project.videoUrl && project.videoUrl.trim() !== '') {
+                            // Priority 1: Video
+                            mediaHtml = `
+                                <video autoplay loop muted playsinline>
+                                    <source src="${project.videoUrl}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>`;
+                        } else if (project.imageUrl && project.imageUrl.trim() !== '') {
+                            // Priority 2: Image (when no video)
+                            mediaHtml = `<img src="${project.imageUrl}" alt="${project.title}" class="project-image">`;
+                        } else {
+                            // Priority 3: Placeholder
+                            mediaHtml = `<div class="placeholder"><i class="fas fa-code"></i></div>`;
+                        }
+
+                        card.innerHTML = `
+                            <div class="media-container">
+                                ${mediaHtml}
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">${project.title}</h3>
+                                <div class="tags">${tagsHtml}</div>
+                                <p class="card-desc">${project.description}</p>
+                                <div class="card-links">
+                                    ${linksHtml}
+                                </div>
+                            </div>
+                        `;
+
+                        sectionGrid.appendChild(card);
+                    });
+                    
+                    sectionWrapper.appendChild(sectionGrid);
+                    projectContainer.appendChild(sectionWrapper);
+                });
+            }
+            
+            // Set footer year
+            document.getElementById('year').textContent = new Date().getFullYear();
+            document.getElementById('footer-name').textContent = portfolioData.name;
+        });
+    </script>
+</body>
+</html>
+
