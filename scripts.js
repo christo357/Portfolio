@@ -271,10 +271,16 @@ if (publicationsContainer && portfolioData.publications && Array.isArray(portfol
 
 // 6. Populate Contact Section
 if (portfolioData.contact) {
-    document.getElementById('contact-text').textContent = portfolioData.contact.text;
-    document.getElementById('email-link').textContent = portfolioData.contact.email;
-    document.getElementById('email-link').href = `mailto:${portfolioData.contact.email}`;
-    document.getElementById('location').textContent = portfolioData.contact.location;
+    if (document.getElementById('contact-text')) {
+        document.getElementById('contact-text').textContent = portfolioData.contact.text;
+    }
+    if (document.getElementById('email-link')) {
+        document.getElementById('email-link').textContent = portfolioData.contact.email;
+        document.getElementById('email-link').href = `mailto:${portfolioData.contact.email}`;
+    }
+    if (document.getElementById('location')) {
+        document.getElementById('location').textContent = portfolioData.contact.location;
+    }
 }
 
 // Social Links in Contact
