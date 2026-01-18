@@ -35,7 +35,7 @@ const portfolioData = {
         {
             name: "Engineering Stack",
             icon: "fas fa-cogs",
-            description: "Linux, Docker, Git, WandB (Experiment Tracking), CI/CD, Parallel Computing"
+            description: "Linux, Git, WandB (Experiment Tracking),Hugging Face, CI/CD, Parallel Computing, Multi-Threading"
         },
         {
             name: "Math & Theory",
@@ -75,6 +75,21 @@ const portfolioData = {
 
     // Projects
     projects: [
+                
+        {
+            title: "LLM-Driven Robotic Manipulation",
+            sectionTitle: "Embodied AI & Robotics",
+            tags: ["Reinforcement Learning (TQC)", "MuJoCo",  "Stable-baseline3", "Hugging Face", "Multi-Threading", "Asynchronous Systems","Python", ], // Added tags
+            videoUrl: "https://github.com/user-attachments/assets/e5560d35-05b3-489d-9a0a-fa090a45930e", 
+            description: "A hierarchical control system that gives a Fetch Robotic Arm a 'Brain' (LLM) and a 'Body' (RL). \n\n" +
+            "To solve the latency gap between slow LLM inference and fast physics requirements, I implemented a **Multi-Threaded Asynchronous Architecture**. \n\n" + 
+            "1. **Main Thread:** Runs the MuJoCo physics engine at 60Hz to maintain stable simulation and RL inference.\n" +
+            "2. **Worker Thread:** Handles blocking OpenAI API calls to parse natural language commands.\n" +
+            "This decoupling ensures the robot maintains active control and stability even while the planner is 'thinking' about the next move.",
+            links: [
+                { text: "View Code", url: "https://github.com/christo357/LLM-Robotic-Arm" },
+            ]
+        },
         {
             title: "Object-Centric A2C for Latent Reasoning",
             sectionTitle: "Research & Publications",
