@@ -1,64 +1,102 @@
 /* data.js */
 const portfolioData = {
+    // ------------------------------------------------------------------------
+    // 1. HEADER & BIO
+    // ------------------------------------------------------------------------
     name: "Christo Mathew",
-    title: "Applied AI & Robotics Engineer",
-    bio: "Applied AI Engineer bridging the gap between Deep Reinforcement Learning and Real-World Robotics. Specializing in continuous control, sim-to-real transfer, and robust vision-based policies.",
+    title: "Applied AI & Agent Engineer",
+    bio: "Building autonomous agents that reason and act in dynamic environments. Bridging the gap between High-Level Planning (LLMs) and Low-Level Control (RL) to create resilient systems—from robotic manipulators to software navigators.",
 
     // Profile Photos
-    heroPhoto: "images/profile.jpg", // Photo for hero section
-    aboutPhoto: "images/profile.jpg", // Photo for about section
+    heroPhoto: "images/profile.jpg",
+    aboutPhoto: "images/profile.jpg",
 
     // Detailed About Section
     about: {
-        text: "I am an engineer focused on the 'Body' of Artificial Intelligence. While the industry focuses on LLMs (the brain), I build the control stacks that allow AI to interact with the physical world. My expertise lies in designing stable Reinforcement Learning algorithms for continuous control tasks and engineering computer vision pipelines for real-time perception. I have a strong foundation in the mathematics of policy gradients (PPO/A2C) and the systems engineering required to deploy them.",
+        text: "I am an engineer focused on the 'Body' of Artificial Intelligence. While the industry focuses on LLMs (the brain), I build the control stacks that allow AI to interact with the physical world. My expertise lies in designing stable Reinforcement Learning algorithms for continuous control tasks and engineering asynchronous pipelines for real-time robotic perception. I have a strong foundation in the mathematics of policy gradients (PPO/A2C) and the systems engineering required to deploy them.",
         education: "Master's in Computer Science - Rutgers University",
         experience: "Research Assistant @ Rutgers University | Focus: RL for Complex Reasoning"
     },
 
-    /// Skills Section 
+    // ------------------------------------------------------------------------
+    // 2. SKILLS
+    // ------------------------------------------------------------------------
     skills: [
         {
-            name: "Robotics & Control", // Rebranded from "Reinforcement Learning"
+            category: "Robotics & Control",
             icon: "fas fa-robot",
-            description: "Proximal Policy Optimization (PPO), A2C, GAE, Reward Engineering, Curriculum Learning, MuJoCo, Gymnasium"
+            items: [
+                { name: "MuJoCo", imgSrc: "icons/mujoco_icon.png", type: "tool" },
+                { name: "Gymnasium", imgSrc: "https://farama.org/assets/images/gymnasium_black.svg", type: "tool" },
+                { name: "Gymnasium-Robotics", imgSrc: "icons/gymnasium_robotics_icon.png", type: "tool" },
+                { name: "PPO & A2C", type: "concept" },
+                { name: "Reward Engineering", type: "concept" },
+                { name: "Curriculum Learning", type: "concept" }
+            ]
         },
         {
-            name: "Computer Vision",
+            category: "Computer Vision",
             icon: "fas fa-eye",
-            description: "Real-Time Object Tracking (DeepSORT), YOLOv11, Domain Randomization, Vision Transformers (ViT), OpenCV"
+            items: [
+                { name: "OpenCV", icon: "devicon-opencv-plain", type: "tool" },
+                { name: "YOLOv11", type: "tool" },
+                { name: "DeepSORT", type: "concept" },
+                { name: "Domain Randomization", type: "concept" },
+                { name: "Vision Transformers (ViT)", type: "concept" }
+            ]
         },
         {
-            name: "Deep Learning Fundamentals",
+            category: "Deep Learning",
             icon: "fas fa-brain",
-            description: "PyTorch, TensorFlow, Architecture Design (CNNs/MLPs), Transformers, Variance Reduction, Hyperparameter Tuning"
+            items: [
+                { name: "PyTorch", icon: "devicon-pytorch-original", type: "tool" },
+                { name: "TensorFlow", icon: "devicon-tensorflow-original", type: "tool" },
+                { name: "Transformers", type: "concept" },
+                { name: "Hyperparameter Tuning", type: "concept" }
+            ]
         },
         {
-            name: "Engineering Stack",
+            category: "Engineering Stack",
             icon: "fas fa-cogs",
-            description: "Linux, Git, WandB (Experiment Tracking),Hugging Face, CI/CD, Parallel Computing, Multi-Threading"
+            items: [
+                { name: "Linux", icon: "devicon-linux-plain", type: "tool" },
+                { name: "Git", icon: "devicon-git-plain", type: "tool" },
+                { name: "Weights & Biases", imgSrc: "icons/wandb_icon.png", type: "tool" },
+                { name: "Hugging Face", imgSrc: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg", type: "tool" },
+                // CHANGED: "Parallel Computing" -> "Asynchronous Systems" (More accurate for your threading work)
+                { name: "Asynchronous Systems", type: "concept" },
+                { name: "Latency Optimization", type: "concept" },
+                { name: "Multi-Threading", type: "concept" }
+            ]
         },
-        {
-            name: "Math & Theory",
-            icon: "fas fa-square-root-alt",
-            description: "Markov Decision Processes (MDPs), Linear Algebra, Probability Theory, Monte-Carlo Methods"
-        }
+        // {
+        //     category: "Math & Theory",
+        //     icon: "fas fa-square-root-alt",
+        //     items: [
+        //         { name: "MDPs", type: "concept" },
+        //         { name: "Linear Algebra", type: "concept" },
+        //         { name: "Probability Theory", type: "concept" },
+        //         { name: "Monte-Carlo Methods", type: "concept" }
+        //     ]
+        // }
     ],
 
-    // Social Links
+    // ------------------------------------------------------------------------
+    // 3. SOCIALS & CONTACT
+    // ------------------------------------------------------------------------
     socials: {
         github: "https://github.com/christo357",
         linkedin: "https://linkedin.com/in/christo-m7",
-        // twitter: "https://twitter.com/yourusername" // optional
     },
 
-    // Contact Information
     contact: {
-        // email: "christomathew2001@gmail.com", // Update with your actual email
         location: "Available for Remote Work (USA)",
         text: "I am actively looking for roles in Embodied AI, Robotics Simulation, and ML Engineering. Let's build agents that work."
     },
 
-    // Publications
+    // ------------------------------------------------------------------------
+    // 4. PUBLICATIONS
+    // ------------------------------------------------------------------------
     publications: [
         {
             title: "Toward a Metrology for Artificial Intelligence: Hidden-Rule Environments and Reinforcement Learning",
@@ -69,101 +107,101 @@ const portfolioData = {
             arxivUrl: "https://arxiv.org/abs/2509.06213",
             description: "Investigated the impact of state representation on RL performance in the Game Of Hidden Rules (GOHR). Conducted a comparative analysis of Object-Centric vs. Feature-Centric architectures, demonstrating that object-level inductive biases significantly improve sample efficiency in latent-rule discovery.",
             tags: ["Reinforcement Learning", "Reasoning", "Paper"]
-            // Add more publications as needed
         },
     ],
 
-    // Projects
+    // ------------------------------------------------------------------------
+    // 5. PROJECTS
+    // ------------------------------------------------------------------------
     projects: [
-                
+
+        // --- THE HERO PROJECT (UPDATED) ---
         {
             title: "LLM-Driven Robotic Manipulation",
             sectionTitle: "Embodied AI & Robotics",
-            tags: ["Reinforcement Learning (TQC)", "MuJoCo",  "Stable-baseline3", "Hugging Face", "Multi-Threading", "Asynchronous Systems","Python", ], // Added tags
-            videoUrl: "https://github.com/user-attachments/assets/e5560d35-05b3-489d-9a0a-fa090a45930e", 
-            description: "A hierarchical control system that gives a Fetch Robotic Arm a 'Brain' (LLM) and a 'Body' (RL). \n\n" +
-            "To solve the latency gap between slow LLM inference and fast physics requirements, I implemented a **Multi-Threaded Asynchronous Architecture**. \n\n" + 
-            "1. **Main Thread:** Runs the MuJoCo physics engine at 60Hz to maintain stable simulation and RL inference.\n" +
-            "2. **Worker Thread:** Handles blocking OpenAI API calls to parse natural language commands.\n" +
-            "This decoupling ensures the robot maintains active control and stability even while the planner is 'thinking' about the next move.",
+            // Added "Asynchronous Systems" and "State-Based Control"
+            tags: ["Reinforcement Learning (TQC)", "MuJoCo", "Multi-Threading", "Asynchronous Systems", "State-Based Control", "Python"],
+            // Using the 'Overall' video (Longer demo)
+            videoUrl: "https://github.com/user-attachments/assets/e5560d35-05b3-489d-9a0a-fa090a45930e",
+            description: "A hierarchical 'Brain-Body' control system for the Fetch robot. I engineered a multi-threaded asynchronous architecture to decouple slow LLM reasoning from the 60Hz physics loop, ensuring zero-latency motor control during complex planning phases.", featured: true, // Mark as featured if your template supports it
             links: [
-                { text: "View Code", url: "https://github.com/christo357/LLM-Robotic-Arm" },
+                { text: "View Code", url: "https://github.com/christo357/LLM-Robotic-Arm" }, // Ensure this matches your actual repo name
             ]
         },
+
+        // --- RESEARCH PROJECT ---
         {
             title: "Object-Centric A2C for Latent Reasoning",
-            sectionTitle: "Research & Publications",
+            sectionTitle: "Research & Foundations",
             tags: ["Transformer-A2C", "Object-Centric Learning", "State Representation"],
-            imageUrl: "images/gohr.png", // Use a screenshot from your PDF here if possible
-            description: "Featured on arXiv (2509.06213). Investigated the failure modes of Actor-Critic methods in environments with non-stationary hidden rules. Engineered a custom Gymnasium environment to benchmark agent adaptability.",
+            imageUrl: "images/gohr.png",
+            description: "Featured on arXiv (2509.06213). Investigated failure modes of Actor-Critic methods in hidden-rule environments, demonstrating that object-level inductive biases significantly improve sample efficiency.",
             featured: true,
             links: [
                 { text: "Read Paper", url: "https://arxiv.org/abs/2509.06213" }
             ]
         },
 
-        // 2. The Reacher (Your strongest Code)
+        // --- RL ENGINEERING PROJECT ---
         {
             title: "Continuous Control Policy Optimization",
-            sectionTitle: "Robotics & Control",
-            tags: ["PPO", "Generalized Advantage Estimation", "Parallel Computing", "MuJoCo"],
+            sectionTitle: "Embodied AI & Robotics",
+            tags: ["PPO", "GAE", "VectorEnv", "MuJoCo"],
             videoUrl: "assets/ppo_reacher.mp4",
-            description: "Engineered a high-throughput Proximal Policy Optimization (PPO) agent for the Reacher-v2 task. Solved the 'sparse reward' problem by implementing Generalized Advantage Estimation (GAE) and utilizing 16-process parallel environments (VectorEnv) to increase sample efficiency by 400%. Demonstrated robust convergence on unstable dynamics.",
+            description: "A high-throughput PPO agent for the Reacher-v2 task. Solved the 'sparse reward' problem using Generalized Advantage Estimation (GAE) and parallelized environments, improving sample efficiency by 400%.",
             featured: true,
             links: [
                 { text: "View Architecture", url: "https://github.com/christo357/RL_experiments/blob/main/5_ppo/ppo_reacher.py" }
             ]
         },
 
-        // 3. The Vision Project (The "Hire Me" Project)
+        // --- VISION PROJECT ---
         {
             title: "Real-Time Human-Robot Interaction System",
-            sectionTitle: "Computer Vision",
-            tags: ["YOLOv11", "DeepSORT", "Latency Optimization", "Human-Computer Interaction"],
+            sectionTitle: "Computer Vision & Perception",
+            tags: ["YOLOv11", "DeepSORT", "Latency Optimization", "PyTorch"],
             imageUrl: "images/treasure_finder.png",
-            description: "Built an end-to-end perception pipeline integrating YOLOv11 for state-of-the-art detection and DeepSORT for multi-object tracking. Engineered a logic layer to gamify real-world video feeds, optimizing the pipeline for <15ms inference time on consumer hardware.",
+            description: "An end-to-end perception pipeline integrating YOLOv11 and DeepSORT. Engineered a logic layer to gamify real-world video feeds, optimizing for <15ms inference time on consumer hardware.",
             featured: true,
             links: [
                 { text: "View Code", url: "https://github.com/christo357/Treasure-Finder/tree/main" }
             ]
         },
 
-        // 4. Double Pendulum (The Math Flex)
         {
             title: "Stabilization of Non-Linear Dynamics",
-            sectionTitle: "Robotics & Control",
+            sectionTitle: "Embodied AI & Robotics",
             tags: ["A2C", "Variance Reduction", "Entropy Regularization", "PyTorch"],
             videoUrl: "assets/ppo_inv_doublependulum.mp4",
-            description: "Comparative analysis of synchronous (A2C) vs. asynchronous policy gradient methods. Tackled the 'catastrophic forgetting' problem inherent in chaotic double-pendulum dynamics by tuning entropy regularization coefficients and bootstrap value targets.",
+            description: "Tackled 'catastrophic forgetting' in chaotic double-pendulum dynamics. A comparative analysis of synchronous vs. asynchronous policy gradients, tuning entropy regularization for robust convergence.",
             links: [
                 { text: "View PPO Implementation", url: "https://github.com/christo357/RL_experiments/blob/main/5_ppo/ppo_invdoublependulum_parallel.py" },
                 { text: "View A2C Implementation", url: "https://github.com/christo357/RL_experiments/blob/main/4_a2c_gae/a2c_invdoublependulum_optimized.py" }
             ]
         },
 
-        // 5. N-Step (The Theory Flex)
         {
             title: "N-Step Bootstrapping Analysis",
-            sectionTitle: "Robotics & Control",
+            sectionTitle: "Research & Foundations",
             tags: ["TD-Lambda", "Credit Assignment", "Algorithm Design"],
             videoUrl: "assets/nstep_a2c_balancing_invpendulum.mp4",
-            description: "Investigated the bias-variance tradeoff in Temporal Difference learning. Implemented N-Step Actor-Critic to empirically demonstrate how increasing the rollout horizon reduces bias in value estimation at the cost of higher variance.",
+            description: "Investigated the bias-variance tradeoff in Temporal Difference learning. Empirically demonstrated how increasing the rollout horizon (N-Step) reduces bias in value estimation.",
             links: [
                 { text: "View Code", url: "https://github.com/christo357/RL_experiments/blob/main/3_nstep_actorcritic/nstep_actorcritic_invertedpendulum.py" }
             ]
         },
 
-        // 6. SHViT (The Vision Research)
         {
             title: "Vision Transformer (ViT) Robustness Analysis",
-            sectionTitle: "Computer Vision Research",
+            sectionTitle: "Computer Vision & Perception",
             tags: ["Transformers", "Inductive Bias", "Model Robustness"],
             imageUrl: "images/shvit.png",
-            description: "Research project quantifying the inductive bias of Single-Head Vision Transformers (SHViT). Conducted ablation studies across domain shifts to measure generalization capabilities compared to standard CNN baselines.",
+            description: "Quantifying the inductive bias of Single-Head Vision Transformers (SHViT). Conducted ablation studies across domain shifts to measure generalization capabilities against CNN baselines.",
             links: [
                 { text: "View Analysis", url: "https://github.com/christo357/SHViT" }
             ]
-        }        // {
+        }
+        // {
         //     title: " ",
         //     sectionTitle: "",
         //     tags: ["PyTorch",],

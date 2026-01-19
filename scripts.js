@@ -97,48 +97,97 @@ if (portfolioData.about) {
 }
 
 // 3. Populate Skills Section
+// 3. Populate Skills Section
 const skillsContainer = document.getElementById('skills-container');
-if (skillsContainer && portfolioData.skills && Array.isArray(portfolioData.skills)) {
-    portfolioData.skills.forEach(skill => {
-        const skillItem = document.createElement('div');
-        skillItem.className = 'skill-item';
-        skillItem.setAttribute('data-skill', skill.name);
-        skillItem.style.cursor = 'pointer';
-        skillItem.title = `Click to filter projects by ${skill.name}`;
-        // Parse description into clickable subskills
-        const subskills = skill.description.split(',').map(s => s.trim());
-        const subskillsHtml = subskills.map((subskill, index) => {
-            const isLast = index === subskills.length - 1;
-            return `<span class="subskill-tag" data-subskill="${subskill}">${subskill}${!isLast ? ', ' : ''}</span>`;
-        }).join('');
+const techTicker = document.getElementById('tech-ticker');
 
-        skillItem.innerHTML = `
-            <i class="${skill.icon}"></i>
-            <h3>${skill.name}</h3>
-            <p>${subskillsHtml}</p>
-        `;
+if (portfolioData.skills && Array.isArray(portfolioData.skills)) {
+    // A. Populate Tech Banner (Icons only)
+    if (techTicker) {
+        // Collect all unique tools that have an icon or image
+        const allTools = [];
+        const seenTools = new Set();
 
-        // Add click handler to filter projects by main skill
-        skillItem.addEventListener('click', function (e) {
-            // Only trigger if a subskill wasn't clicked
-            if (!e.target.classList.contains('subskill-tag')) {
-                const skillName = this.getAttribute('data-skill');
-                window.location.href = `projects.html?filter=${encodeURIComponent(skillName)}`;
+        portfolioData.skills.forEach(cat => {
+            if (cat.items) {
+                cat.items.forEach(item => {
+                    // Check if it's a tool with an icon/img and hasn't been added yet
+                    if (item.type === 'tool' && (item.icon || item.imgSrc) && !seenTools.has(item.name)) {
+                        allTools.push(item);
+                        seenTools.add(item.name);
+                    }
+                });
             }
         });
 
-        // Add click handlers for subskills
-        skillItem.querySelectorAll('.subskill-tag').forEach(tag => {
-            tag.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation(); // Prevent triggering the parent card click
-                const subskillName = this.getAttribute('data-subskill');
-                window.location.href = `projects.html?filter=${encodeURIComponent(subskillName)}`;
-            });
+        // Create the ticker content
+        let tickerHtml = '';
+        allTools.forEach(tool => {
+            let iconElement = '';
+            if (tool.imgSrc) {
+                iconElement = `<img src="${tool.imgSrc}" alt="${tool.name}">`;
+            } else {
+                iconElement = `<i class="${tool.icon}"></i>`;
+            }
+
+            tickerHtml += `
+                <div class="ticker-item" title="${tool.name}">
+                    ${iconElement}
+                    <span class="ticker-name">${tool.name}</span>
+                </div>
+            `;
         });
 
-        skillsContainer.appendChild(skillItem);
-    });
+        // Render as a flex wrap "Logo Wall"
+        techTicker.innerHTML = `<div class="ticker-track">${tickerHtml}</div>`;
+    }
+
+    // B. Populate Skills Grid (Text Tags only)
+    if (skillsContainer) {
+        portfolioData.skills.forEach(skillCat => {
+            const skillItem = document.createElement('div');
+            skillItem.className = 'skill-item';
+
+            const catName = skillCat.category || skillCat.name;
+
+            // Combine all items (Tools + Concepts) into one tags list
+            const allItems = skillCat.items || [];
+
+            // Generate Tags HTML
+            let tagsHtml = `<div class="tags-container">`;
+            tagsHtml += allItems.map(item => {
+                return `<span class="subskill-tag" data-subskill="${item.name}">${item.name}</span>`;
+            }).join('');
+            tagsHtml += `</div>`;
+
+            skillItem.innerHTML = `
+                <div class="skill-header">
+                    <i class="${skillCat.icon} category-icon"></i>
+                    <h3>${catName}</h3>
+                </div>
+                ${tagsHtml}
+            `;
+
+            // Add click handlers for tags (filter)
+            skillItem.querySelectorAll('.subskill-tag').forEach(tag => {
+                tag.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const subskillName = this.getAttribute('data-subskill');
+                    window.location.href = `projects.html?filter=${encodeURIComponent(subskillName)}`;
+                });
+            });
+
+            // Main card click (category filter)
+            skillItem.addEventListener('click', function (e) {
+                if (!e.target.closest('.subskill-tag')) {
+                    window.location.href = `projects.html?filter=${encodeURIComponent(catName)}`;
+                }
+            });
+
+            skillsContainer.appendChild(skillItem);
+        });
+    }
 }
 
 // 4. Populate Projects (only featured on homepage, grouped by sections)
