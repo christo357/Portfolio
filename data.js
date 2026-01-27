@@ -161,7 +161,7 @@ const portfolioData = {
             sectionTitle: "Computer Vision & Perception",
             tags: ["YOLOv11", "DeepSORT", "Latency Optimization", "PyTorch"],
             imageUrl: "images/treasure_finder.png",
-            description: "An end-to-end perception pipeline integrating YOLOv11 and DeepSORT. Engineered a logic layer to gamify real-world video feeds, optimizing for <15ms inference time on consumer hardware.",
+            description: "An end-to-end perception pipeline integrating YOLOv11 and DeepSORT. Built a logic layer to gamify real-world video feeds and focused on real-time inference behavior and pipeline efficiency.",
             featured: true,
             links: [
                 { text: "View Code", url: "https://github.com/christo357/Treasure-Finder/tree/main" }
